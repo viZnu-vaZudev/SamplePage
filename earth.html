@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar System | Space Landing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      background: linear-gradient(to bottom, #1a1a2e, transparent);
+      animation: fadeIn 2s ease-out;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #00f7ff;
+    }
+
+    header p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .solar-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 3rem 2rem;
+    }
+
+    .planet-card {
+      background: #000; /* Changed background color to black */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .planet-card:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .planet-image {
+      width: 120px;
+      height: 120px;
+      margin: 1rem auto;
+      transition: transform 2s;
+    }
+
+    .rotate {
+      transform: rotate(360deg);
+    }
+
+    .planet-card h3 {
+      margin: 0.5rem 0;
+      color: #00e0ff;
+    }
+
+    .planet-card p {
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #0a0a23;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Solar Explorer</h1>
+  <p>Discover our solar system — scroll and explore rotating planets!</p>
+</header>
+
+<section class="solar-section">
+  <div class="planet-card">
+    <img class="planet-image" src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" alt="Earth" />
+    <h3>🌍 Earth</h3>
+    <p>Our home planet, rich with life and natural beauty, is the third from the Sun.</p>
+  </div>
+
+  <div class="planet-card">
+    <img class="planet-image" src="https://upload.wikimedia.org/wikipedia/commons/0/02/OSIRIS_Mars_true_color.jpg" alt="Mars" />
+    <h3>🔴 Mars</h3>
+    <p>The Red Planet, a dry desert world with signs of ancient rivers and possibly life.</p>
+  </div>
+
+  <div class="planet-card">
+    <img class="planet-image" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg" alt="Jupiter" />
+    <h3>🪐 Jupiter</h3>
+    <p>The gas giant with its Great Red Spot is the largest planet in the solar system.</p>
+  </div>
+
+  <div class="planet-card">
+    <img class="planet-image" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Saturn_during_Equinox.jpg" alt="Saturn" />
+    <h3>🌀 Saturn</h3>
+    <p>Famous for its rings, Saturn is a giant made mostly of hydrogen and helium.</p>
+  </div>
+</section>
+
+<footer>
+  🚀 Built for stargazers | © 2025 Solar Explorer
+</footer>
+
+<script>
+  const planetImages = document.querySelectorAll(".planet-image");
+
+  const rotateOnScroll = (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("rotate");
+      } else {
+        entry.target.classList.remove("rotate");
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(rotateOnScroll, {
+    threshold: 0.6
+  });
+
+  planetImages.forEach(img => observer.observe(img));
+</script>
+
+</body>
+</html>
